@@ -1,0 +1,13 @@
+humor: https://image.flaticon.com/icons/svg/119/119158.svg
+
+love: https://image.flaticon.com/icons/svg/148/148838.svg
+
+inspirational: https://image.flaticon.com/icons/svg/717/717954.svg
+
+hope: https://image.flaticon.com/icons/svg/841/841235.svg
+
+motivation: https://image.flaticon.com/icons/svg/477/477829.svg
+
+friendship: https://image.flaticon.com/icons/svg/1006/1006106.svg
+
+life: https://image.flaticon.com/icons/svg/308/308936.svg
