@@ -10,7 +10,6 @@ module.exports = function (passport) {
 		res.send();
 	})
 
-
 	router.get('/login/google',
 		passport.authenticate('google', { scope: ['profile'] }),
 		function (req,res) {
@@ -18,11 +17,16 @@ module.exports = function (passport) {
 		}
 	);
 
-
+	router.get('/login/google/cb',
+		passport.authenticate('google', { scope: ['profile'] }),
+		function (req,res) {
+			res.redirect('/home');
+		}
+	);
 
 	router.get('/home',
-		//ensureLoggedIn('/'),
-		passport.authenticate('google', { failureRedirect: '/' }),
+		ensureLoggedIn('/'),
+		//passport.authenticate('google', { scope: ['profile'] }, { failureRedirect: '/' }),
 		function (req, res) {
 			console.log("User logged in: ", req.user.id);
 			//console.log("User Logged In. User:", req.user,"query:", req.query)

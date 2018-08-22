@@ -12,7 +12,7 @@ console.log("Google app Client ID: ", process.env.CLIENT_ID); //test that we got
 const strategy = new Strategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: 'http://localhost:3000/home'
+  callbackURL: 'http://localhost:3000/login/google/cb'
 },
   function (accessToken, refreshToken, profile, cb) {
     // In this example, the user's Github profile is supplied as the user
@@ -26,7 +26,9 @@ const strategy = new Strategy({
     console.log(`THE PHOTO URL: ${profile.photos[0].value}`)
     User.findOrCreate({ googleid: profile.id },{googleid: profile.id, username: profile.displayName, image: profile.photos[0].value}, (err, result) => {
       console.log("This is what we got from the db ", result)
-      return cb(null, result);
+      if (err) return cb(err, false);
+      else if (!result) return cb("User created? not in DB. THis should never happen: " + profile.id, false);
+      else return cb(null, result);
     })
       // .then(DBuser => cb(null, DBuser))
       // .catch()
