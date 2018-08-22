@@ -3,8 +3,8 @@ import "./Jumbotron.css";
 
 const Jumbotron = ({ children }) => (
   <div
-    style={{ height: 100, clear: "both", paddingTop: 25, textAlign: "center" }}
-    className="TunedIn"
+    style={{ height: 200, clear: "both", paddingTop: 25 }}
+    className="TunedIn img-fluid"
   >
     {children}
   </div>
