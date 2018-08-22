@@ -99,7 +99,7 @@ const deserializeUser = function (savedId, done) {
   Since we are using MySQL, use Sequelize to get the user by id
   We just need to match the id column in the database to savedId
   */
-  User.find({ id: savedId })
+  User.find({ _id: savedId })
     .then(function (user) {
       console.log("Got user:", user)
 
