@@ -10,7 +10,9 @@ const App = () => (
       <Nav />
       <Switch>
         <Route exact path="/" component={LiveFeed} />
+        <Route exact path="/livefeed" component={LiveFeed} />
         <Route exact path="/myprofile" component={Profile} />
+      
       </Switch>
     </div>
   </Router>
