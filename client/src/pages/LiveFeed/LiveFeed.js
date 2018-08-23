@@ -3,6 +3,8 @@ import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, TextArea, FormBtn } from "../../components/Form";
+import { List, ListItem } from "../../components/List";
+import { DeleteBtn } from "../../components/DeleteBtn";
 
 
 class LiveFeed extends Component {
