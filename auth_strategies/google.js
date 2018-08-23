@@ -12,7 +12,7 @@ console.log("Google app Client ID: ", process.env.CLIENT_ID); //test that we got
 const strategy = new Strategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: 'http://localhost:3000/login/google/cb'
+  callbackURL: 'http://localhost:3001/login/google/cb'
 },
   function (accessToken, refreshToken, profile, cb) {
     // In this example, the user's Github profile is supplied as the user

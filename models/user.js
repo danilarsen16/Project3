@@ -16,8 +16,7 @@ var UserSchema = new Schema({
     unique: true
   },
   username: {
-    type: String,
-    unique: true
+    type: String
   },
   image: {
     type: String
