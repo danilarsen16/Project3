@@ -1,4 +1,5 @@
 module.exports = {
+
   listing: require("./listings")
 };
 module.exports = {
