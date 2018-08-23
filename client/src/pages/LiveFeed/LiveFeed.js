@@ -16,27 +16,26 @@ const style = {
 
 class LiveFeed extends Component {
   state = {
-    books: [],
     title: "",
-    author: "",
-    contact: ""
+    user_id: "",
+    description: ""
   };
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadListings();
   }
 
-  loadBooks = () => {
-    API.getBooks()
+  loadListings = () => {
+    API.getListings()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", contact: "" })
+        this.setState({ listings: res.data, title: "", user_id: "", description: "" })
       )
       .catch(err => console.log(err));
   };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
+  deleteListing = id => {
+    API.deleteListing(id)
+      .then(res => this.loadListings())
       .catch(err => console.log(err));
   };
 
@@ -49,13 +48,13 @@ class LiveFeed extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveBook({
+    if (this.state.title && this.state.user_id) {
+      API.saveListing({
         title: this.state.title,
-        author: this.state.author,
-        contact: this.state.contact
+        user_id: this.state.user_id,
+        description: this.state.description
       })
-        .then(res => this.loadBooks())
+        .then(res => this.loadListings())
         .catch(err => console.log(err));
     }
   };
@@ -87,8 +86,8 @@ class LiveFeed extends Component {
               <div className="media-body">
                 <h5 className="mt-0"> 
                 <span><Input value={this.state.title} onChange={this.handleInputChange} name="title" placeholder="Title"/></span></h5>
-                <TextArea value={this.state.contact} onChange={this.handleInputChange} name="listing" placeholder="What's your shout-out? (required)"/>
-                <FormBtn disabled={!(this.state.author && this.state.title)} onClick={this.handleFormSubmit}>post it!</FormBtn>
+                <TextArea value={this.state.description} onChange={this.handleInputChange} name="listing" placeholder="What's your shout-out? (required)"/>
+                <FormBtn disabled={!(this.state.user_id && this.state.title)} onClick={this.handleFormSubmit}>post it!</FormBtn>
               </div>
             </div>
             <Row></Row>
@@ -103,19 +102,19 @@ class LiveFeed extends Component {
             </Row>
 
             <Row>
-            {this.state.books.length ? (
+            {this.state.listings.length ? (
               <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
+                {this.state.listings.map(listing => (
+                  <ListItem key={listing._id}>
                   {/* =======================below is the link to get to users profile for contact info ==========================*/}
-                    <Link to={"/books/" + book._id}>
-                      <font size="5" color="salmon"><strong>{book.title}</strong></font>
+                    <Link to={"/listings/" + listing._id}>
+                      <font size="5" color="salmon"><strong>{listing.title}</strong></font>
                       <br />
                       <br />
-                      <font color="grey">Contact <strong>{book.author} </strong>@ {book.contact}</font>
-                      {/* <a href="mailto:{book.contact}">Email Me</a>  */}
+                      <font color="grey">description <strong>{listing.user_id} </strong>@ {listing.description}</font>
+                      {/* <a href="mailto:{listing.contact}">Email Me</a>  */}
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                    <DeleteBtn onClick={() => this.deleteListing(listing._id)} />
                   </ListItem>
                 ))}
               </List>
@@ -132,4 +131,4 @@ class LiveFeed extends Component {
   }
 }
 
-export default Books;
+export default LiveFeed;
