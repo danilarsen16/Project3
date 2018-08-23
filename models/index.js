@@ -1,3 +1,7 @@
 module.exports = {
-  Listing: require("./listing")
+
+  listing: require("./listings")
+};
+module.exports = {
+  user: require("./user")
 };
