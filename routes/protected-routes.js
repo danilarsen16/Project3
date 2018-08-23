@@ -11,7 +11,8 @@ router.get('/home',
 //passport.authenticate('google', { scope: ['profile'] }, { failureRedirect: '/' }),
 function (req, res) {
     console.log("User logged in: ", req.user.id);
-    res.sendFile(path.join(__dirname, "../crappyTestHtml.html"));
+    res.redirect('http://localhost:3000/')
+    //res.sendFile(path.join(__dirname, "../"));
     //console.log("User Logged In. User:", req.user,"query:", req.query)
     //res.json({ success: (req.user ? "Yes" : "No"), user: req.user });
     //res.redirect('/testgoogleuser');
