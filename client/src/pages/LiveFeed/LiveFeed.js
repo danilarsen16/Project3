@@ -18,7 +18,7 @@ class LiveFeed extends Component {
   }
 
   loadBooks = () => {
-    API.getBooks()
+    API.getUser()
       .then(res =>
         this.setState({ books: res.data, title: "", author: "", contact: "" })
       )

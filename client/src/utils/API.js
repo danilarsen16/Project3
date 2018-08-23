@@ -1,5 +1,9 @@
 import axios from "axios";
 
+let id = "1";
+let userData = "userdata";
+let listingData = "listingdata";
+
 export default {
 
 
