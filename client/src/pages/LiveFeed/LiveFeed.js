@@ -4,7 +4,8 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import { List, ListItem } from "../../components/List";
-import { DeleteBtn } from "../../components/DeleteBtn";
+import DeleteBtn from "../../components/DeleteBtn";
+import { Link } from "react-router-dom";
 
 
 class LiveFeed extends Component {
