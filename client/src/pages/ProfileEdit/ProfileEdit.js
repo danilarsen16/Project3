@@ -1,19 +1,18 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
-import "./Profile.css";
-import { Link } from "react-router-dom";
+import { Input, TextArea, FormBtn } from "../../components/Form";
+import "./ProfileEdit.css";
 
-
-class Profile extends Component {
+class ProfileEdit extends Component {
  state = {
   username: "Alicia Keys",
-  location: "New York, NY",
-  instruments: "Vocals, Piano",
-  genres: "R&B, Jazz, Hip-Hop, Soul",
-  bio: "Alicia Augello Cook was born on January 25, 1981, in the Hell's Kitchen neighborhood of New York City’s Manhattan borough. She is the only child of Teresa (Augello), a paralegal and part-time actress, and one of three children of Craig Cook, a flight attendant.Key's father is African American and her mother is of Sicilian (Agrigento and Sciacca) and either Scottish or Irish descent. Named after her Puerto Rican godmother, Keys expressed that she was comfortable with her multiracial heritage because she felt she was able to relate to different cultures.",
+  location: "",
+  instruments: "",
+  genres: "",
+  bio: "",
   email: "aliciakeys@email.com",
-  phone: "xxx-xxx-xxxx",
+  phone: "",
   image: "https://images.unsplash.com/photo-1517430529647-90cda5b40093?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9c0c3c22799cb1acffee5bc833906df8&auto=format&fit=crop&w=700&q=60",
 
   listings: [],
@@ -42,13 +41,35 @@ class Profile extends Component {
       .catch(err => console.log(err));
     };
 
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+          [name]: value
+        });
+    };
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        API.updateUser ({
+            location: this.state.location,
+            instruments: this.state.instruments,
+            genres:this.state.genres,
+            bio: this.state.bio,
+            phone: this.state.phone
+        })
+        .then(res => this.getUser())
+        .catch(err => console.log(err))
+    }
+
  render (){
    return (
   <div>
+      <form>
     <Container fluid>
-    <button style={{ float: "right", marginBottom: 10 }} className="btn btn-primary">
-    <Link to="/myprofile/edit">Edit Profile</Link>
-    </button>
+    <FormBtn onClick={this.handleFormSubmit}>
+    Update Profile
+    </FormBtn>
     <div class="bio">
       <Row>
         <Col size="md-3">
@@ -60,9 +81,9 @@ class Profile extends Component {
           <Container fluid>
           <div>
             <h3>{this.state.username}</h3>
-              <p><span><img src="/placeholder.png" style={{width: 20, height: 20}}/> {this.state.location}</span></p>
-              <p><strong>Instruments: </strong>{this.state.instruments}</p>
-              <p><strong>Genre: </strong>{this.state.genres}</p>
+              <p><span><img src="/placeholder.png" style={{width: 20, height: 20}}/><Input value={this.state.location} onChange={this.handleInputChange} name="location" placeholder="ie. New York, NY"/></span></p>
+              <p><strong>Instruments: </strong><Input value={this.state.instruments} onChange={this.handleInputChange} name="instruments" placeholder="ie. Vocal, Violin"/></p>
+              <p><strong>Genre: </strong><Input value={this.state.genres} onChange={this.handleInputChange} name="genres" placeholder="ie. jazz, soul"/></p>
           </div>
           </Container>
         </Col>
@@ -76,21 +97,7 @@ class Profile extends Component {
         <div class="shadow rounded top">
           <h5>ABOUT ME</h5>
           <hr></hr>
-          <p>{this.state.bio}</p>
-        </div>
-        </Container>
-
-        <Container fluid>
-        <div class="shadow rounded">
-          <h5>MY POSTINGS</h5>
-          <hr></hr>
-          <div className="media">
-            <img className="mr-3" src="https://is5-ssl.mzstatic.com/image/thumb/Music62/v4/a0/b9/3a/a0b93aa4-0282-e495-6cef-6aae7340e280/886446159805.jpg/268x0w.jpg" style={{ width: 64, height: 64 }} alt="Generic placeholder image"/>
-              <div className="media-body">
-                <h5 className="mt-0">French horn needed</h5>
-                  Looking for french horn to play at upcoming recital at the University of Minnesota.
-            </div>
-          </div>
+          <p><TextArea value={this.state.bio} onChange={this.handleInputChange} name="bio" placeholder="About Me" /></p>
         </div>
         </Container>
       </Col>
@@ -101,15 +108,16 @@ class Profile extends Component {
           <h6>Contact & Personal Info</h6>
           <hr></hr>
           <p><span><img src="/email.png" style={{width: 20, height: 20}}/> {this.state.email}</span></p>
-          <p><span><img src="/phone.png" style={{width: 20, height: 20}}/> {this.state.phone}</span></p>
+          <p><span><img src="/phone.png" style={{width: 20, height: 20}}/><Input value={this.state.phone} onChange={this.handleInputChange} name="phone" placeholder="ie. xxx-xxx-xxxx"/></span></p>
         </div>
         </Container>
       </Col>
       </Row>
     </Container>
+    </form>
   </div>
    );
   }
 }
 
-export default Profile;
+export default ProfileEdit;
