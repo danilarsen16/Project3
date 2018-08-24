@@ -10,8 +10,8 @@ router.get('/home',
 //ensureLoggedIn('/'),
 //passport.authenticate('google', { scope: ['profile'] }, { failureRedirect: '/' }),
 function (req, res) {
-    console.log(req.user)
-    console.log("User logged in: ", req.user.id);
+    console.log("req.user",req.user)
+    console.log("User logged in: ", req.user[0]._id);
     res.redirect('http://localhost:3000/')
     //res.sendFile(path.join(__dirname, "../"));
     //console.log("User Logged In. User:", req.user,"query:", req.query)
