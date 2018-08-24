@@ -7,10 +7,13 @@ import { List, ListItem } from "../../components/List";
 import DeleteBtn from "../../components/DeleteBtn";
 
 
-
 class LiveFeed extends Component {
   state = {
     listings: [],
+    title: "",
+    username: "",
+    description: ""
+
   };
 
   componentDidMount() {
@@ -19,6 +22,7 @@ class LiveFeed extends Component {
 
   loadListings = () => {
     API.getListings()
+
       .then(res => this.setState({ listings: res.data }))
       .catch(err => console.log(err));
   };
