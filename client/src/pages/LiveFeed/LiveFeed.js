@@ -4,7 +4,8 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import { List, ListItem } from "../../components/List";
-import  DeleteBtn  from "../../components/DeleteBtn";
+import DeleteBtn from "../../components/DeleteBtn";
+
 
 class LiveFeed extends Component {
   state = {
@@ -12,6 +13,7 @@ class LiveFeed extends Component {
     title: "",
     username: "",
     description: ""
+
   };
 
   componentDidMount() {
@@ -20,9 +22,8 @@ class LiveFeed extends Component {
 
   loadListings = () => {
     API.getListings()
-      .then(res =>
-        this.setState({ listings: res.data, title: "", username: "", description: "" })
-      )
+
+      .then(res => this.setState({ listings: res.data }))
       .catch(err => console.log(err));
   };
 

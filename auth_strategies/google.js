@@ -1,6 +1,6 @@
 let Strategy = require('passport-google-oauth20').Strategy;
 
-let User = require('../models/user');
+let User = require('../models/users');
 
 //A strategy is the way we are authenticating.
 //This file sets up the github strategy. 

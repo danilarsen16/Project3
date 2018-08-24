@@ -4,7 +4,6 @@ require('./models/database_config');
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const routes = require("./routes");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -18,38 +17,15 @@ app.use(require('morgan')('combined'));
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
-app.get('/', (req, res) => {
-  console.log(req.host);
-  if (req.user) {
-    //user logged in
-    //redirect to app
-    if (process.env.NODE_ENV === "production") {
-      res.sendFile('client/build/index.html');
-    }
-  }
-  else {
-    //not logged in
-    //redirect to login
-    if (process.env.NODE_ENV === "production") {
-      res.redirect('/login/google');
-    }
-    else {
-      res.redirect('http://'+ req.host + ':3001/login/google');
-    }
-
-  }
-})
 // Add routes, both API and view
-app.use(routes);
 const passport = require('./passport-init')(app);
 
-app.get('/forbidden', (req, res) => {
+app.get('/forbidden', (req,res) => {
   res.send(403, 'You are not authorized')
 });
 
 // Setup Routes
-const protectedRoutes = require('./routes/protected-routes');
+const protectedRoutes   = require('./routes/protected-routes');
 //const apiRoutes         = require('./routes/api')(passport);
 //const pubRoutes         = require('./routes/public-routes')(passport);
 
@@ -64,7 +40,8 @@ mongoose.connect(
 );
 
 // Start the API server
-app.listen(PORT, function () {
+app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
+
 
