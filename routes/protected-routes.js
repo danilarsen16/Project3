@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var User = require('../models/user');
+var User = require('../models/users');
 var path = require("path");
 
 //these 2 lines ensure all the routes on this router are protected. 
@@ -19,6 +19,9 @@ function (req, res) {
     //res.redirect('/testgoogleuser');
 }
 );
+const api = require("./api/index.js");
+router.use("/api", api);
+
 
 module.exports = router
 

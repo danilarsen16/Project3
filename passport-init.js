@@ -2,7 +2,7 @@ let passport = require('passport');
 let session = require("express-session")({ secret: "awe245ofinlz45xkldiu7ro", resave: false, saveUninitialized: false });
 
 
-let User = require('./models/user')
+let User = require('./models/users')
 
 module.exports = function (expressApp) {
   //initialize your authentication strategies

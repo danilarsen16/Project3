@@ -12,8 +12,8 @@ export default {
 //   updateUser: function(id){
 //     return axios.update("api/user" + id);
 //   },
-  getListings: function(id){
-    return axios.get("api/listings" + id);
+  getListings: function(){
+    return axios.get("/api/listings");
   },
   createListings: function(){
     return axios.post("/api/createListings");
