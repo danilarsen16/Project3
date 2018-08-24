@@ -1,6 +1,6 @@
-// import axios from "axios";
+import axios from "axios";
 
-// export default {
+export default {
 
 
 //   createUser: function (id){
@@ -12,17 +12,17 @@
 //   updateUser: function(id){
 //     return axios.update("api/user" + id);
 //   },
-//   getListings: function(id){
-//     return axios.get("api/listing" + id, listingData);
-//   },
-//   createListing: function(){
-//     return axios.post("/api/createListing");
-//   },
-//   updateListing: function(id){
-//     return axios.put("/api/updateListing" + id, listingData)
-//   },
-//   deleteListing: function(id){
-//     return axios.delete("api/deleteListing" +id, listingData)
-//   },
+  getListings: function(id){
+    return axios.get("api/listings" + id);
+  },
+  createListings: function(){
+    return axios.post("/api/createListings");
+  },
+  updateListings: function(id){
+    return axios.put("/api/updateListings" + id)
+  },
+  deleteListings: function(id){
+    return axios.delete("api/deleteListings" +id)
+  },
 
-// }
+}
