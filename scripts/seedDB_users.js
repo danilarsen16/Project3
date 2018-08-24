@@ -63,9 +63,9 @@ const userSeed = [
     }
 ];
 
-db.User
+db.tunedUp
   .remove({})
-  .then(() => db.User.collection.insertMany(userSeed))
+  .then(() => db.users.collection.insertMany(userSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);

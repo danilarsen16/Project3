@@ -6,7 +6,7 @@ mongoose.connect(
     "mongod://localhost/listings"
 );
 
-const listingSeed = [
+const listingsSeed = [
     {
         title: "Need Banjo Lessons",
         description: "Experienced saxophone player wanting to learn how to play the banjo.",
@@ -47,9 +47,9 @@ const listingSeed = [
 ];
 
 
-db.Listing
+db.tunedUp
   .remove({})
-  .then(() => db.User.collection.insertMany(listingSeed))
+  .then(() => db.listings.collection.insertMany(listingsSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);
