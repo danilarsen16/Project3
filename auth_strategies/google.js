@@ -1,6 +1,6 @@
 let Strategy = require('passport-google-oauth20').Strategy;
-
-let User = require('../models/user');
+require('dotenv').config();
+let User = require('../models/users');
 
 //A strategy is the way we are authenticating.
 //This file sets up the github strategy. 
@@ -8,11 +8,12 @@ let User = require('../models/user');
 
 
 console.log("Google app Client ID: ", process.env.CLIENT_ID); //test that we got our env setup right
+const cbUrl = (process.env.NODE_ENV === "production" ? '/login/google/cb' : 'http://localhost:3001/login/google/cb')
 
 const strategy = new Strategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: 'http://localhost:3001/login/google/cb'
+  callbackURL: cbUrl
 },
   function (accessToken, refreshToken, profile, cb) {
     // In this example, the user's Github profile is supplied as the user
@@ -24,14 +25,14 @@ const strategy = new Strategy({
     console.log("Successfully logged in: ", profile);
 
     console.log(`THE PHOTO URL: ${profile.photos[0].value}`)
-    User.findOrCreate({ googleid: profile.id },{googleid: profile.id, username: profile.displayName, image: profile.photos[0].value}, (err, result) => {
+    User.findOrCreate({ googleid: profile.id }, { googleid: profile.id, username: profile.displayName, image: profile.photos[0].value }, (err, result) => {
       console.log("This is what we got from the db ", result)
       if (err) return cb(err, false);
       else if (!result) return cb("User created? not in DB. THis should never happen: " + profile.id, false);
       else return cb(null, result);
     })
-      // .then(DBuser => cb(null, DBuser))
-      // .catch()
+    // .then(DBuser => cb(null, DBuser))
+    // .catch()
     // User.findOrCreate({
     //   where :{
     //     google_id: profile.id
@@ -42,7 +43,7 @@ const strategy = new Strategy({
 
     // .catch()
 
-     // get rid of this when you get mongo set up
+    // get rid of this when you get mongo set up
   });
 
 module.exports = strategy;

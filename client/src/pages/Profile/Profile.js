@@ -4,7 +4,6 @@ import { Col, Row, Container } from "../../components/Grid";
 import "./Profile.css";
 import { Link } from "react-router-dom";
 
-
 class Profile extends Component {
  state = {
   username: "Alicia Keys",
@@ -12,8 +11,9 @@ class Profile extends Component {
   instruments: "Vocals, Piano",
   genres: "R&B, Jazz, Hip-Hop, Soul",
   bio: "Alicia Augello Cook was born on January 25, 1981, in the Hell's Kitchen neighborhood of New York City’s Manhattan borough. She is the only child of Teresa (Augello), a paralegal and part-time actress, and one of three children of Craig Cook, a flight attendant.Key's father is African American and her mother is of Sicilian (Agrigento and Sciacca) and either Scottish or Irish descent. Named after her Puerto Rican godmother, Keys expressed that she was comfortable with her multiracial heritage because she felt she was able to relate to different cultures.",
+
   email: "aliciakeys@email.com",
-  phone: "xxx-xxx-xxxx",
+   phone: "xxx-xxx-xxxx",
   image: "https://images.unsplash.com/photo-1517430529647-90cda5b40093?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9c0c3c22799cb1acffee5bc833906df8&auto=format&fit=crop&w=700&q=60",
 
   listings: [],
@@ -60,6 +60,7 @@ class Profile extends Component {
           <Container fluid>
           <div>
             <h3>{this.state.username}</h3>
+
               <p><span><img src="/placeholder.png" style={{width: 20, height: 20}}/> {this.state.location}</span></p>
               <p><strong>Instruments: </strong>{this.state.instruments}</p>
               <p><strong>Genre: </strong>{this.state.genres}</p>
