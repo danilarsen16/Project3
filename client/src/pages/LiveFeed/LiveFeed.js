@@ -6,8 +6,6 @@ import { Input, TextArea, FormBtn } from "../../components/Form";
 import { List, ListItem } from "../../components/List";
 import  DeleteBtn  from "../../components/DeleteBtn";
 
-
-
 class LiveFeed extends Component {
   state = {
     listings: [],
@@ -84,6 +82,8 @@ class LiveFeed extends Component {
               </div>
             </div>
             <Row></Row>
+
+
             <Row>
               <div className="media">
                 <img className="mr-3" src="https://images.unsplash.com/photo-1517430529647-90cda5b40093?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9c0c3c22799cb1acffee5bc833906df8&auto=format&fit=crop&w=700&q=60" style={{ width: 64, height: 64 }} alt="Generic placeholder image" />
