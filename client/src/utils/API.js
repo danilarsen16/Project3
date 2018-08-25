@@ -2,14 +2,15 @@ import axios from "axios";
 
 export default {
 
+
   createUser: function (id){
-    return axios.post("/api/" + id );
+    return axios.post("/api/user" + id );
   },
   getUser: function(id){
-    return axios.get("/api/" + id );
+    return axios.get("/api/user" + id );
   },
   updateUser: function(id){
-    return axios.update("api/" + id);
+    return axios.update("api/user" + id);
   },
   getListings: function(id){
     return axios.get("api/listings" + id);
