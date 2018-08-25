@@ -3,6 +3,7 @@ import axios from "axios";
 export default {
 
 
+
   getGoogleUser: function(){
     return axios.get("/info");
   },
@@ -15,8 +16,8 @@ export default {
   updateUser: function(id){
     return axios.update("api/users/" + id);
   },
-  getListings: function(id){
-    return axios.get("api/listings/" + id);
+  getListings: function(){
+    return axios.get("/api/listings");
   },
   createListings: function(){
     return axios.post("/api/createListings");
