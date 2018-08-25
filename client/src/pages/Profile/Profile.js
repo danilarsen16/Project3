@@ -18,12 +18,16 @@ class Profile extends Component {
 
   listings: [],
 
-  _id: ""
+  //googleuser: {}
  }
+
  componentDidMount() {
-  //this.setState({_id: req.user[0]._id})
-  this.loadListings();
-  this.loadProfile(this.state._id);
+   
+  //this.setState({googleuser: this.props.googleuser})
+  //console.log(googleuser)
+
+  //this.loadListings();
+  //this.loadProfile(this.state._id);
 }
 
  loadListings = () => {
@@ -43,6 +47,8 @@ class Profile extends Component {
     };
 
  render (){
+  const googleuser = this.props.googleuser
+  console.log(googleuser)
    return (
   <div>
     <Container fluid>
@@ -53,17 +59,17 @@ class Profile extends Component {
       <Row>
         <Col size="md-3">
           <div>
-            <img class="rounded float-right" src="https://is5-ssl.mzstatic.com/image/thumb/Music62/v4/a0/b9/3a/a0b93aa4-0282-e495-6cef-6aae7340e280/886446159805.jpg/268x0w.jpg" style={{ width: 150, height: 150 }} alt="Generic user picture"/>
+            <img class="rounded float-right" src={googleuser.image + 0} style={{ width: 150, height: 150 }} alt={googleuser.username}/>
           </div>
         </Col>
         <Col size="md-5">
           <Container fluid>
           <div>
-            <h3>{this.state.username}</h3>
+            <h3>{googleuser.username}</h3>
 
-              <p><span><img src="/placeholder.png" style={{width: 20, height: 20}}/> {this.state.location}</span></p>
-              <p><strong>Instruments: </strong>{this.state.instruments}</p>
-              <p><strong>Genre: </strong>{this.state.genres}</p>
+              <p><span><img src="/placeholder.png" style={{width: 20, height: 20}}/> {googleuser.location}</span></p>
+              <p><strong>Instruments: </strong>{googleuser.instruments}</p>
+              <p><strong>Genre: </strong>{googleuser.genres}</p>
           </div>
           </Container>
         </Col>
@@ -77,7 +83,7 @@ class Profile extends Component {
         <div class="shadow rounded top">
           <h5>ABOUT ME</h5>
           <hr></hr>
-          <p>{this.state.bio}</p>
+          <p>{googleuser.bio}</p>
         </div>
         </Container>
 
@@ -86,7 +92,7 @@ class Profile extends Component {
           <h5>MY POSTINGS</h5>
           <hr></hr>
           <div className="media">
-            <img className="mr-3" src="https://is5-ssl.mzstatic.com/image/thumb/Music62/v4/a0/b9/3a/a0b93aa4-0282-e495-6cef-6aae7340e280/886446159805.jpg/268x0w.jpg" style={{ width: 64, height: 64 }} alt="Generic placeholder image"/>
+            <img className="mr-3" src={googleuser.image + 0} style={{ width: 64, height: 64 }} alt={googleuser.username}/>
               <div className="media-body">
                 <h5 className="mt-0">French horn needed</h5>
                   Looking for french horn to play at upcoming recital at the University of Minnesota.
@@ -101,8 +107,8 @@ class Profile extends Component {
         <div class="shadow rounded top">
           <h6>Contact & Personal Info</h6>
           <hr></hr>
-          <p><span><img src="/email.png" style={{width: 20, height: 20}}/> {this.state.email}</span></p>
-          <p><span><img src="/phone.png" style={{width: 20, height: 20}}/> {this.state.phone}</span></p>
+          <p><span><img src="/email.png" style={{width: 20, height: 20}}/> {googleuser.email}</span></p>
+          <p><span><img src="/phone.png" style={{width: 20, height: 20}}/> {googleuser.phone}</span></p>
         </div>
         </Container>
       </Col>
