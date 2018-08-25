@@ -12,7 +12,7 @@ router.get('/home',
 function (req, res) {
 
     console.log(req.user)
-    console.log("User logged in: ", req.user.id);
+    console.log("User logged in: ", req.user[0]._id);
     res.redirect('http://'+ req.host + ':3000/')
 
     //res.sendFile(path.join(__dirname, "../"));
@@ -21,6 +21,15 @@ function (req, res) {
     //res.redirect('/testgoogleuser');
 }
 );
+
+router.get('/info',
+function(req,res) {
+    res.json(req.user[0])
+})
+
+// router.route("/info")
+//     .get(  (req,res) => res.json(req.user[0]) )
+//     .post( (req,res) => res.json(req.user[0]) )
 const api = require("./api/index.js");
 router.use("/api", api);
 

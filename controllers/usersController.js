@@ -3,6 +3,7 @@ const db = require("../models");
 
 module.exports = {
   findById: function(req, res) {
+    console.log('USERSCONTROLLER ', req)
     db.users
       .findById(req.params.id)
       .then(dbModel => res.json(dbModel))
