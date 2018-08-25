@@ -4,8 +4,8 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import { List, ListItem } from "../../components/List";
-import  DeleteBtn  from "../../components/DeleteBtn";
-
+import DeleteBtn from "../../components/DeleteBtn";
+import Link from "../../components/Link"
 
 
 class LiveFeed extends Component {
@@ -13,7 +13,11 @@ class LiveFeed extends Component {
     listings: [],
     title: "",
     username: "",
-    description: ""
+    description: "",
+    // user_id: "",
+    // genres: "",
+    // instruments: "",
+    // image_url: "",
   };
 
   componentDidMount() {
@@ -23,7 +27,7 @@ class LiveFeed extends Component {
   loadListings = () => {
     API.getListings()
       .then(res =>
-        this.setState({ listings: res.data, title: "", username: "", description: "" })
+        this.setState({ listings: res.data, title: "", username: "", description: "", user_id: "", image_url: "", genres:"", instruments: "", })
       )
       .catch(err => console.log(err));
   };
@@ -46,8 +50,12 @@ class LiveFeed extends Component {
     if (this.state.title && this.state.username) {
       API.saveListings({
         title: this.state.title,
-        user_id: this.state.username,
-        description: this.state.description
+        username: this.state.username,
+        description: this.state.description,
+        // user_id: this.state.user_id,
+        // user_id: this.state.genres,
+        // user_id: this.state.instruments,
+        // image_url: this.state.image_url,
       })
         .then(res => this.loadListings())
         .catch(err => console.log(err));
@@ -85,42 +93,39 @@ class LiveFeed extends Component {
             </div>
             <Row></Row>
             <Row>
-              <div className="media">
+              {/* <div className="media">
                 <img className="mr-3" src="https://images.unsplash.com/photo-1517430529647-90cda5b40093?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9c0c3c22799cb1acffee5bc833906df8&auto=format&fit=crop&w=700&q=60" style={{ width: 64, height: 64 }} alt="Generic placeholder image" />
                 <div className="media-body">
+                  <h4 className="mt-1">Alicia Keys</h4>
                   <h5 className="mt-0">French horn needed</h5>
                   Looking for french horn to play at upcoming recital at the University of Minnesota.
                 </div>
-              </div>
+              </div> */}
             </Row>
 
             <Row>
               {this.state.listings.length ? (
                 <List>
                   {this.state.listings.map(listings => {
-                                  //       <ListItem key={listing._id}>
-                                  //       {/* =======================below is the link to get to users profile for contact info ==========================*/}
-                                  //       <Link to={"/listings/" + listing._id}>
-                                  //         <font size="5" color="salmon"><strong>{listing.title}</strong></font>
-                                  //         <br />
-                                  //         <br />
-                                  //         <font color="grey">description <strong>{listing.user_id} </strong>@ {listing.description}</font>
-                                  //         {/* <a href="mailto:{listing.contact}">Email Me</a>  */}
-                                  //       </Link>
-                                  //       <DeleteBtn onClick={() => this.deleteListing(listing._id)} />
-                                  //     </ListItem>
-                                  //   ))}
-                                  // </List>
-                    return (
-                    <ListItem key={listings._id}>
-                    <a href={"/listings" + listings._id}>
-                    <strong>
-                      {listings.title} {listings.description}
-                      </strong>
-                      </a>
+                          <ListItem key={listings._id}>
+                          
+                          <Link to={"/seedDB_listings.js/"}>
+                            <font size="5" color="salmon"><strong>{listingsSeed.title}</strong></font>
+                          </Link>
 
-                      <DeleteBtn onClick={() => this.deleteListings(listings._id)} />
-                    </ListItem>
+                          <DeleteBtn onClick={() => this.deleteListing(listings._id)} />
+                        </ListItem>                  
+                    
+                    return (
+                      <ListItem key={listings._id}>
+                        <a href={"/listings" + listings._id}>
+                          <strong>
+                            {listings.title} {listings.description}
+                          </strong>
+                        </a>
+
+                        <DeleteBtn onClick={() => this.deleteListings(listings._id)} />
+                      </ListItem>
                     );
                   })}
                 </List>
