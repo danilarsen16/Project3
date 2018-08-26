@@ -26,7 +26,7 @@ class Profile extends Component {
   //this.setState({googleuser: this.props.googleuser})
   //console.log(googleuser)
 
-  //this.loadListings();
+  this.loadListings();
   //this.loadProfile(this.state._id);
 }
 
@@ -48,7 +48,7 @@ class Profile extends Component {
 
  render (){
   const googleuser = this.props.googleuser
-  console.log(googleuser)
+  //console.log(googleuser.)
    return (
   <div>
     <Container fluid>
@@ -59,7 +59,7 @@ class Profile extends Component {
       <Row>
         <Col size="md-3">
           <div>
-            <img class="rounded float-right" src={googleuser.image + 0} style={{ width: 150, height: 150 }} alt={googleuser.username}/>
+            <img className="rounded float-right" src={googleuser.image + 0} style={{ width: 150, height: 150 }} alt={googleuser.username}/>
           </div>
         </Col>
         <Col size="md-5">
@@ -69,7 +69,7 @@ class Profile extends Component {
 
               <p><span><img src="/placeholder.png" style={{width: 20, height: 20}}/> {googleuser.location}</span></p>
               <p><strong>Instruments: </strong>{googleuser.instruments}</p>
-              <p><strong>Genre: </strong>{googleuser.genres}</p>
+              <p><strong>Genres: </strong>{googleuser.genres}</p>
           </div>
           </Container>
         </Col>
@@ -80,7 +80,7 @@ class Profile extends Component {
       <Row>
       <Col size="md-8">
         <Container fluid>
-        <div class="shadow rounded top">
+        <div className="shadow rounded top">
           <h5>ABOUT ME</h5>
           <hr></hr>
           <p>{googleuser.bio}</p>
@@ -88,7 +88,7 @@ class Profile extends Component {
         </Container>
 
         <Container fluid>
-        <div class="shadow rounded">
+        <div className="shadow rounded">
           <h5>MY POSTINGS</h5>
           <hr></hr>
           <div className="media">
@@ -104,7 +104,7 @@ class Profile extends Component {
 
       <Col size="md-4">
       <Container fluid>
-        <div class="shadow rounded top">
+        <div className="shadow rounded top">
           <h6>Contact & Personal Info</h6>
           <hr></hr>
           <p><span><img src="/email.png" style={{width: 20, height: 20}}/> {googleuser.email}</span></p>
