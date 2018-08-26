@@ -13,8 +13,15 @@ export default {
   getUser: function(id){
     return axios.get("/api/users/" + id );
   },
-  updateUser: function(id){
-    return axios.update("api/users/" + id);
+  updateUser: function(id,content){
+    //console.log(id)
+    return axios({
+      url: `/api/users/` + id,
+      method: "put",
+      data: content
+     });
+    
+    //.put("/api/users/" + id);
   },
   getListings: function(){
     return axios.get("/api/listings");

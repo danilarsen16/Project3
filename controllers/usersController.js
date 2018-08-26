@@ -16,8 +16,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
+    //console.log(req.body)
     db.users
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .findOneAndUpdate({_id: req.params.id}, { $set: { location: req.body.location, phone: req.body.phone, bio: req.body.bio }, $push: { instruments: req.body.instruments, genres: req.body.genres} }, { new: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

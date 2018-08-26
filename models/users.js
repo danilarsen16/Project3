@@ -23,22 +23,32 @@ var UserSchema = new Schema({
   },
   email: {
     type: String,
-    match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
+    match: [/.+@.+\..+/, "Please enter a valid e-mail address"],
+    default: "new@new.com"
   },
   genres: {
-    type: Array
+    type: Array,
+    default: ["elevator"]
   },
   instruments: {
-    type: Array
+    type: Array,
+    default: ["sackbut"]
   },
-  zip: {
-    type: String
+  location: {
+    type: String,
+    default: "Saint Paul, MN"
   },
   bio: {
-    type: String
+    type: String,
+    default: "Kenny G is my homeboy."
   },
   links: {
-    type: Array
+    type: Array,
+    default: ["wickerpedia.org"]
+  },
+  phone: {
+    type: String,
+    default: "772-257-4501"
   }
 });
 UserSchema.plugin(findOrCreate)
