@@ -6,7 +6,7 @@ import ProfileEdit from "./pages/ProfileEdit";
 import Nav from "./components/Nav";
 import API from "./utils/API";
 
-class App extends Component{
+class App extends Component {
   state = {
     googleuser: {},
   }
@@ -17,29 +17,39 @@ class App extends Component{
         //console.log('API RES',res.data)
         //this.setState({googleuser: res.data})
         //console.log(res.data)
-        this.setState({googleuser: res.data})
+        this.setState({ googleuser: res.data })
       )
       .catch(err => console.log(err));
     //this.setState({_id: req.user[0]._id})
   }
 
-  render () {
+  render() {
     return (
-  <Router>
-    <div>
-      <Nav />
-      <Switch>
-        {/* <Route path="/abc" render={()=><TestWidget num="2" someProp={100}/>}/> */}
-        <Route exact path="/" render={()=><LiveFeed googleuser={this.state.googleusername}/>}/>
-    {/* //googleuser={this.state.googleuser} component={LiveFeed} /> */}
-        <Route exact path="/livefeed" render={()=><LiveFeed googleuser={this.state.googleuser}/>}/>
-        <Route exact path="/myprofile" render={()=><Profile googleuser={this.state.googleuser}/>}/>
-        <Route exact path="/myprofile/edit" render={()=><ProfileEdit googleuser={this.state.googleuser}/>} />
-      </Switch>
-    </div>
-  </Router>
- )
-}
+      <Router>
+        <div>
+          <Nav />
+          <Switch>
+            {/* <Route path="/abc" render={()=><TestWidget num="2" someProp={100}/>}/> */}
+            <Route exact path="/" render={(props) => <LiveFeed {...props} googleuser={this.state.googleuser} />} />
+            {/* //googleuser={this.state.googleuser} component={LiveFeed} /> */}
+            <Route exact path="/livefeed" render={(props) => <LiveFeed {...props} googleuser={this.state.googleuser} />} />
+            <Route exact path="/myprofile" render={(props) => <Profile {...props} googleuser={this.state.googleuser} />} />
+            <Route exact path="/myprofile/edit" render={(props) => <ProfileEdit {...props} googleuser={this.state.googleuser} />} />
+
+            {/* <Route exact path="/myprofile/edit" component={ProfileEdit} />
+            <Route exact path="/myprofile/edit" render={(props) => (<ProfileEdit {...props} data={googleuser= this.state.googleuser})}
+
+            <Route path='/page' component={Page} />
+            const extraProps = {color: 'red' }
+            <Route path='/page' render={(props) => (
+              <Page {...props} data={extraProps} />
+            )} /> */}
+
+          </Switch>
+        </div>
+      </Router>
+    )
+  }
 }
 
 export default App;

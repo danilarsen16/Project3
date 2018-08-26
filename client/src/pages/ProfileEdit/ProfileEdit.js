@@ -5,118 +5,135 @@ import { Input, TextArea, FormBtn } from "../../components/Form";
 import "./ProfileEdit.css";
 
 class ProfileEdit extends Component {
- state = {
-  username: "Alicia Keys",
-  location: "",
-  instruments: "",
-  genres: "",
-  bio: "",
-  email: "aliciakeys@email.com",
-  phone: "",
-  image: "https://images.unsplash.com/photo-1517430529647-90cda5b40093?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9c0c3c22799cb1acffee5bc833906df8&auto=format&fit=crop&w=700&q=60",
+  state = {
+    username: "Alicia Keys",
+    location: "",
+    instruments: "",
+    genres: "",
+    bio: "",
+    email: "aliciakeys@email.com",
+    phone: "",
+    image: "https://images.unsplash.com/photo-1517430529647-90cda5b40093?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9c0c3c22799cb1acffee5bc833906df8&auto=format&fit=crop&w=700&q=60",
 
-  listings: [],
+    listings: [],
 
-  _id: ""
- }
- componentDidMount() {
-  //this.setState({_id: req.user[0]._id})
-  this.loadListings();
-  this.loadProfile(this.state._id);
-}
+    _id: ""
+  }
+  componentDidMount() {
+    //   //this.setState({_id: req.user[0]._id})
+    //   const googleuser = this.props.googleuser
+    //   //this.setState({_id: googleuser._id})
+    //   console.log(googleuser._id)
+    //this.loadListings();
+    //   //this.loadProfile(this.state._id);
+  }
 
- loadListings = () => {
-  API.getListings()
-    .then(res =>
-      this.setState({ listings: res.data, title: "", username: "", description: "" })
-    )
-    .catch(err => console.log(err));
+  // loadListings = () => {
+  //   console.log('loadlistings')
+  //   API.getListings()
+  //     .then(res =>
+  //       this.setState({ listings: res.data, title: "", username: "", description: "" })
+  //     )
+  //     .catch(err => console.log(err));
+  // };
+
+  // loadProfile = () => {
+  //   const googleuser = this.props.googleuser
+  //   console.log(googleuser._id)
+  //   API.getUser(this.state._id)
+  //     .then(res =>
+  //       console.log(res.data)
+  //       //this.setState({ username:"", location:"", instruments:"", genres:"", bio:"", email: "", phone:"", image_url:""})
+  //     )
+  //     .catch(err => console.log(err));
+  //   };
+
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
   };
- 
-  loadProfile = () => {
-    API.getUser()
-      .then(res =>
-        this.setState({ username:"", location:"", instruments:"", genres:"", bio:"", email: "", phone:"", image_url:""})
-      )
-      .catch(err => console.log(err));
-    };
 
 
-    handleInputChange = event => {
-        const { name, value } = event.target;
-        this.setState({
-          [name]: value
-        });
-    };
+  handleFormSubmit = event => {
+    const id = this.props.googleuser._id
+    event.preventDefault();
+    console.log(this.state.location)
+    const location = this.state.location
+    const instruments = this.state.instruments
+    const genres = this.state.genres
+    const bio = this.state.bio
+    const phone = this.state.phone
+    API.updateUser(id, {
+      location: location,
+      instruments: instruments,
+      genres: genres,
+      bio: bio,
+      phone: phone
+    })
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+  }
 
-    handleFormSubmit = event => {
-        event.preventDefault();
-        API.updateUser ({
-            location: this.state.location,
-            instruments: this.state.instruments,
-            genres:this.state.genres,
-            bio: this.state.bio,
-            phone: this.state.phone
-        })
-        .then(res => this.getUser())
-        .catch(err => console.log(err))
-    }
-
- render (){
-   return (
-  <div>
-      <form>
-    <Container fluid>
-    <FormBtn onClick={this.handleFormSubmit}>
-    Update Profile
-    </FormBtn>
-    <div class="bio">
-      <Row>
-        <Col size="md-3">
-          <div>
-            <img class="rounded float-right" src="https://is5-ssl.mzstatic.com/image/thumb/Music62/v4/a0/b9/3a/a0b93aa4-0282-e495-6cef-6aae7340e280/886446159805.jpg/268x0w.jpg" style={{ width: 150, height: 150 }} alt="Generic user picture"/>
-          </div>
-        </Col>
-        <Col size="md-5">
+  render() {
+    const googleuser = this.props.googleuser
+    console.log('render', googleuser._id)
+    return (
+      <div>
+        <form>
           <Container fluid>
-          <div>
-            <h3>{this.state.username}</h3>
-              <p><span><img src="/placeholder.png" style={{width: 20, height: 20}}/><Input value={this.state.location} onChange={this.handleInputChange} name="location" placeholder="ie. New York, NY"/></span></p>
-              <p><strong>Instruments: </strong><Input value={this.state.instruments} onChange={this.handleInputChange} name="instruments" placeholder="ie. Vocal, Violin"/></p>
-              <p><strong>Genre: </strong><Input value={this.state.genres} onChange={this.handleInputChange} name="genres" placeholder="ie. jazz, soul"/></p>
-          </div>
+            <FormBtn onClick={this.handleFormSubmit}>
+              Update Profile
+            </FormBtn>
+            <div className="bio">
+              <Row>
+                <Col size="md-3">
+                  <div>
+                    <img className="rounded float-right" src={googleuser.image + 0} style={{ width: 150, height: 150 }} alt="Generic user picture" />
+                  </div>
+                </Col>
+                <Col size="md-5">
+                  <Container fluid>
+                    <div>
+                      <h3>{googleuser.username}</h3>
+                      <p><span><img src="/placeholder.png" style={{ width: 20, height: 20 }} /><Input value={this.state.location} onChange={this.handleInputChange} name="location" placeholder="ie. New York, NY" /></span></p>
+                      <p><strong>Instruments: </strong><Input value={this.state.instruments} onChange={this.handleInputChange} name="instruments" placeholder="ie. Vocal, Violin" /></p>
+                      <p><strong>Genres: </strong><Input value={this.state.genres} onChange={this.handleInputChange} name="genres" placeholder="ie. jazz, soul" /></p>
+                    </div>
+                  </Container>
+                </Col>
+              </Row>
+            </div>
           </Container>
-        </Col>
-      </Row>
-      </div> 
-    </Container>
-    <Container fluid>
-      <Row>
-      <Col size="md-8">
-        <Container fluid>
-        <div class="shadow rounded top">
-          <h5>ABOUT ME</h5>
-          <hr></hr>
-          <p><TextArea value={this.state.bio} onChange={this.handleInputChange} name="bio" placeholder="About Me" /></p>
-        </div>
-        </Container>
-      </Col>
+          <Container fluid>
+            <Row>
+              <Col size="md-8">
+                <Container fluid>
+                  <div className="shadow rounded top">
+                    <h5>ABOUT ME</h5>
+                    <hr></hr>
+                    <p><TextArea value={this.state.bio} onChange={this.handleInputChange} name="bio" placeholder="About Me" /></p>
+                  </div>
+                </Container>
+              </Col>
 
-      <Col size="md-4">
-      <Container fluid>
-        <div class="shadow rounded top">
-          <h6>Contact & Personal Info</h6>
-          <hr></hr>
-          <p><span><img src="/email.png" style={{width: 20, height: 20}}/> {this.state.email}</span></p>
-          <p><span><img src="/phone.png" style={{width: 20, height: 20}}/><Input value={this.state.phone} onChange={this.handleInputChange} name="phone" placeholder="ie. xxx-xxx-xxxx"/></span></p>
-        </div>
-        </Container>
-      </Col>
-      </Row>
-    </Container>
-    </form>
-  </div>
-   );
+              <Col size="md-4">
+                <Container fluid>
+                  <div className="shadow rounded top">
+                    <h6>Contact & Personal Info</h6>
+                    <hr></hr>
+                    <p><span><img src="/email.png" style={{ width: 20, height: 20 }} /> {this.state.email}</span></p>
+                    <p><span><img src="/phone.png" style={{ width: 20, height: 20 }} /><Input value={this.state.phone} onChange={this.handleInputChange} name="phone" placeholder="ie. xxx-xxx-xxxx" /></span></p>
+                  </div>
+                </Container>
+              </Col>
+            </Row>
+          </Container>
+        </form>
+      </div>
+    );
   }
 }
 
