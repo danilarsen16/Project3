@@ -62,7 +62,6 @@ class LiveFeed extends Component {
 
   render() {
     const googleuser = this.props.googleuser
-    console.log(googleuser)
     return (
       <Container fluid>
         <Jumbotron>
@@ -88,7 +87,7 @@ class LiveFeed extends Component {
                   <Input value={this.state.title} onChange={this.handleInputChange} name="title" placeholder="Title" />
                   <Input value={this.state.username} onChange={this.handleInputChange} name="username" placeholder="Username (required)"/>
                 <TextArea value={this.state.description} onChange={this.handleInputChange} name="description" placeholder="What's your shout-out? (required)" />
-                <FormBtn disabled={!(this.state.user_id && this.state.title)} onClick={this.handleFormSubmit}>post it!</FormBtn>
+                <FormBtn disabled={!(this.state.description && this.state.title)} onClick={this.handleFormSubmit}>post it!</FormBtn>
                 </form>
               </div>
             </div>
