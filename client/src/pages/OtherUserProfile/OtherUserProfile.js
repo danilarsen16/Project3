@@ -17,7 +17,7 @@ class OtherUserProfile extends Component {
   image: "https://images.unsplash.com/photo-1517430529647-90cda5b40093?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9c0c3c22799cb1acffee5bc833906df8&auto=format&fit=crop&w=700&q=60",
 
   listings: [],
-
+  otheruser: {}
   //googleuser: {}
  }
 
@@ -27,6 +27,7 @@ class OtherUserProfile extends Component {
   //console.log(googleuser)
 
   this.loadListings();
+  this.loadOtherUser();
   //this.loadProfile(this.state._id);
 }
 
@@ -37,14 +38,15 @@ class OtherUserProfile extends Component {
     )
     .catch(err => console.log(err));
   };
- 
-  loadProfile = () => {
-    API.getUser()
+
+  loadOtherUser = (id) => {
+    API.getUser(id)
       .then(res =>
-        this.setState({ username:"", location:"", instruments:"", genres:"", bio:"", email: "", phone:"", image_url:""})
+        this.setState({ otheruser: res.data })
       )
       .catch(err => console.log(err));
-    };
+  };
+
 
  render (){
   const googleuser = this.props.googleuser
