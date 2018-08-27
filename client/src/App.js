@@ -39,8 +39,8 @@ class App extends Component {
     this.loadProfile()
   }
 
-    loadProfile = () => {
-      API.getGoogleUser()
+  loadProfile = () => {
+    API.getGoogleUser()
       .then(res =>
         //console.log('API RES',res.data)
         //this.setState({googleuser: res.data})
@@ -48,7 +48,7 @@ class App extends Component {
         this.setState({ googleuser: res.data })
       )
       .catch(err => console.log(err));
-    };
+  };
 
   render() {
     return (
