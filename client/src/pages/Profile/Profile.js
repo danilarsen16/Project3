@@ -52,8 +52,8 @@ class Profile extends Component {
    return (
   <div>
     <Container fluid>
-    <button style={{ float: "right", marginBottom: 10 }} className="btn btn-primary">
-    <Link to="/myprofile/edit">Edit Profile</Link>
+    <button style={{ float: "right", marginBottom: 10 }} className="btn btn-primary editBtn">
+    <Link className="editBtn" to="/myprofile/edit">Edit Profile</Link>
     </button>
     <div class="bio">
       <Row>

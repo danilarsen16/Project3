@@ -11,7 +11,7 @@ class ProfileEdit extends Component {
     instruments: "",
     genres: "",
     bio: "",
-    email: "aliciakeys@email.com",
+    email: "",
     phone: "",
     image: "https://images.unsplash.com/photo-1517430529647-90cda5b40093?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9c0c3c22799cb1acffee5bc833906df8&auto=format&fit=crop&w=700&q=60",
 
@@ -66,12 +66,14 @@ class ProfileEdit extends Component {
     const genres = this.state.genres
     const bio = this.state.bio
     const phone = this.state.phone
+    const email = this.state.email
     API.updateUser(id, {
       location: location,
       instruments: instruments,
       genres: genres,
       bio: bio,
-      phone: phone
+      phone: phone,
+      email: email
     })
       .then(res => console.log(res))
       .catch(err => console.log(err))
@@ -124,7 +126,7 @@ class ProfileEdit extends Component {
                   <div className="shadow rounded top">
                     <h6>Contact & Personal Info</h6>
                     <hr></hr>
-                    <p><span><img src="/email.png" style={{ width: 20, height: 20 }} /> {this.state.email}</span></p>
+                    <p><span><img src="/email.png" style={{ width: 20, height: 20 }} /><Input value={this.state.email} onChange={this.handleInputChange} name="email" placeholder="ie. email@email.com" /></span></p>
                     <p><span><img src="/phone.png" style={{ width: 20, height: 20 }} /><Input value={this.state.phone} onChange={this.handleInputChange} name="phone" placeholder="ie. xxx-xxx-xxxx" /></span></p>
                   </div>
                 </Container>
