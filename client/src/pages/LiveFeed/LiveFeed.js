@@ -4,7 +4,7 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import { List, ListItem } from "../../components/List";
-import DeleteBtn from "../../components/DeleteBtn";
+// import DeleteBtn from "../../components/DeleteBtn";
 
 
 class LiveFeed extends Component {
@@ -34,11 +34,11 @@ class LiveFeed extends Component {
       .catch(err => console.log(err));
   };
 
-  deleteListings = id => {
-    API.deleteListings(id)
-      .then(res => this.loadListings())
-      .catch(err => console.log(err));
-  };
+  // deleteListings = id => {
+  //   API.deleteListings(id)
+  //     .then(res => this.loadListings())
+  //     .catch(err => console.log(err));
+  // };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -89,26 +89,30 @@ class LiveFeed extends Component {
           <Col size="md-1"></Col>
           <Col size="md-8">
             <div className="media">
-              <div className="media-body">
+              <div className="media-body shadow rounded">
                 <form>
                   <Input value={this.state.title} onChange={this.handleInputChange} name="title" placeholder="Title" />
                   
                   {/* <Input value={this.state.username} onChange={this.handleInputChange} name="username" placeholder="Username (required)"/> */}
                 <TextArea value={this.state.description} onChange={this.handleInputChange} name="description" placeholder="Description (required)" />
                 <FormBtn disabled={!(this.state.description && this.state.title)} onClick={this.handleFormSubmit}>Submit</FormBtn>
+        
                 </form>
               </div>
             </div>
             <Row></Row>
+            <Col size="md-12">
             <Row>
+              <div className="media-body shadow rounded">
               {this.state.listings.length ? (
                 <List>
                   {this.state.listings.map(listings => {
                     return (
                     <ListItem key={listings._id}>
                     <h2>
+                    <img className="mr-3 rounded" src={googleuser.image + 0} style={{ width: 64, height: 64 }} alt={googleuser.username}/>
                       {listings.title} 
-                      <DeleteBtn onClick={() => this.deleteListings(listings._id)} />
+                      {/* <DeleteBtn onClick={() => this.deleteListings(listings._id)} /> */}
                       </h2>
                       <strong>Posted By: {listings.username}</strong>
                       <p>{listings.description}</p>
@@ -119,8 +123,9 @@ class LiveFeed extends Component {
               ) : (
                   <h3>No Posts to Display</h3>
                 )}
+                </div>
             </Row>
-
+</Col>
           </Col>
         </Row>
       </Container>
