@@ -13,6 +13,10 @@
     "concurrently": "^3.5.0",
     "nodemon": "^1.11.0"
   },
+  "engines": {
+    "node": "9.9.0",
+    "yarn": "1.9.4"
+  },
   "dependencies": {
     "body-parser": "^1.18.2",
     "connect-ensure-login": "^0.1.1",
