@@ -17,15 +17,17 @@ class Profile extends Component {
   email: "aliciakeys@email.com",
    phone: "xxx-xxx-xxxx",
   image: "https://images.unsplash.com/photo-1517430529647-90cda5b40093?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9c0c3c22799cb1acffee5bc833906df8&auto=format&fit=crop&w=700&q=60",
-
+  isLoading:false,
   listings: [],
 
   //googleuser: {}
  }
  componentDidMount() {
-  this.loadListings();
+  //this.getUserListings();
 }
  componentDidUpdate() {
+   if (this.state.isLoading === false && this.props.profile.hasOwnProperty("_id"))
+   this.getUserListings();
    
   //this.setState({googleuser: this.props.googleuser})
   //console.log(googleuser)
@@ -34,16 +36,18 @@ class Profile extends Component {
   //this.loadProfile(this.state._id);
 }
 
-  loadListings = () => {
-    API.getListings()
+  getUserListings = () => {
+    const googleuser = this.props.profile
+    console.log(this.props)
+    API.getUserListings(googleuser._id)
 
-      .then(res => this.setState({ listings: res.data }))
+    .then(res => this.setState({ listings: res.data, isLoading: true}))
       .catch(err => console.log(err));
-  };
+      };
 
   deleteListings = id => {
     API.deleteListings(id)
-      .then(res => this.loadListings())
+      .then(res => this.getUserListings())
       .catch(err => console.log(err));
   };
  
