@@ -63,6 +63,7 @@ class LiveFeed extends Component {
         description: description
       })
         .then(res => this.loadListings())
+        .then(this.state.title = "", this.state.description="")
         .catch(err => console.log(err));
     }
   };
