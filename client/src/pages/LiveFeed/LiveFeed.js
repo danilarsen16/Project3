@@ -48,12 +48,19 @@ class LiveFeed extends Component {
   };
 
   handleFormSubmit = event => {
+    const googleuser = this.props.googleuser
     event.preventDefault();
-    if (this.state.title && this.state.username) {
+    console.log(this.state.title)
+    const title = this.state.title
+    const username = googleuser.username
+    const _id = googleuser._id
+    const description = this.state.description
+    if (this.state.title && this.state.description) {
       API.createListings({
-        title: this.state.title,
-        user_id: this.state.username,
-        description: this.state.description
+        title: title,
+        username: username,
+        _id: _id,
+        description: description
       })
         .then(res => this.loadListings())
         .catch(err => console.log(err));
@@ -85,9 +92,10 @@ class LiveFeed extends Component {
               <div className="media-body">
                 <form>
                   <Input value={this.state.title} onChange={this.handleInputChange} name="title" placeholder="Title" />
-                  <Input value={this.state.username} onChange={this.handleInputChange} name="username" placeholder="Username (required)"/>
-                <TextArea value={this.state.description} onChange={this.handleInputChange} name="description" placeholder="What's your shout-out? (required)" />
-                <FormBtn disabled={!(this.state.description && this.state.title)} onClick={this.handleFormSubmit}>post it!</FormBtn>
+                  
+                  {/* <Input value={this.state.username} onChange={this.handleInputChange} name="username" placeholder="Username (required)"/> */}
+                <TextArea value={this.state.description} onChange={this.handleInputChange} name="description" placeholder="Description (required)" />
+                <FormBtn disabled={!(this.state.description && this.state.title)} onClick={this.handleFormSubmit}>Submit</FormBtn>
                 </form>
               </div>
             </div>

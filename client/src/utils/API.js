@@ -28,7 +28,7 @@ export default {
   },
   createListings: function (content) {
     return axios({
-      url: `api/listings/`,
+      url: `/api/listings/`,
       method: "post",
       data: content
     });
