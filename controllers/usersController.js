@@ -19,7 +19,7 @@ module.exports = {
     //console.log(req.body)
     db.users
 
-      .findOneAndUpdate({_id: req.params.id}, { $set: { location: req.body.location, phone: req.body.phone, bio: req.body.bio, instruments: req.body.instruments, genres: req.body.genres, links: req.body.links} }, { new: true })
+      .findOneAndUpdate({_id: req.params.id}, { $set: { location: req.body.location, phone: req.body.phone, email: req.body.email, bio: req.body.bio, instruments: req.body.instruments, genres: req.body.genres, links: req.body.links} }, { new: true })
 
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
