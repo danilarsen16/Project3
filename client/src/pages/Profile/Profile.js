@@ -21,12 +21,12 @@ class Profile extends Component {
   //googleuser: {}
  }
 
- componentDidMount() {
+ componentDidUpdate() {
    
   //this.setState({googleuser: this.props.googleuser})
   //console.log(googleuser)
 
-  this.loadListings();
+  // this.loadProfile();
   //this.loadProfile(this.state._id);
 }
 
@@ -38,16 +38,17 @@ class Profile extends Component {
     .catch(err => console.log(err));
   };
  
-  loadProfile = () => {
-    API.getUser()
-      .then(res =>
-        this.setState({ username:"", location:"", instruments:"", genres:"", bio:"", email: "", phone:"", image_url:""})
-      )
-      .catch(err => console.log(err));
-    };
+  // loadProfile = () => {
+  //   API.getUser()
+  //     .then(res =>
+  //       this.setState({ username:"", location:"", instruments:"", genres:"", bio:"", email: "", phone:"", image_url:""})
+  //     )
+  //     .catch(err => console.log(err));
+  //   };
 
  render (){
-  const googleuser = this.props.googleuser
+  // const googleuser = this.props.googleuser
+  const googleuser = this.props.profile
   //console.log(googleuser.)
    return (
   <div>
