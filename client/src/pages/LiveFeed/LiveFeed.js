@@ -79,7 +79,7 @@ class LiveFeed extends Component {
             <Container fluid>
             </Container>
             <div>
-            <img class="rounded" src={googleuser.image + 0} style={{ width: 64, height: 64 }} alt={googleuser.username}/>
+            <img class="rounded" src={googleuser.image + 0} style={{ width: 200, height: 200}} alt={googleuser.username}/>
                 <h4>{googleuser.username}</h4>
                 <hr></hr>
                 <p><strong>Instrument: </strong>{googleuser.instruments}</p>
@@ -125,7 +125,7 @@ class LiveFeed extends Component {
                 )}
                 </div>
             </Row>
-</Col>
+          </Col>
           </Col>
         </Row>
       </Container>
