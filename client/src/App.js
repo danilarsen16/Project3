@@ -10,6 +10,7 @@ import API from "./utils/API";
 class App extends Component {
   state = {
     googleuser: {},
+    otheruserid: "",
     profile: {
       username: "Alicia Keys",
       location: "New York, NY",
@@ -50,6 +51,10 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
+  loadOtherUserId = (otheruserid) => {
+    this.setState({otheruserid: otheruserid})
+  }
+
   render() {
     return (
       <Router>
@@ -59,10 +64,10 @@ class App extends Component {
             {/* <Route path="/abc" render={()=><TestWidget num="2" someProp={100}/>}/> */}
             <Route exact path="/" render={(props) => <LiveFeed {...props} googleuser={this.state.googleuser} />} />
             {/* //googleuser={this.state.googleuser} component={LiveFeed} /> */}
-            <Route exact path="/livefeed" render={(props) => <LiveFeed {...props} googleuser={this.state.googleuser} />} />
+            <Route exact path="/livefeed" render={(props) => <LiveFeed {...props} loadOtherUserId={this.loadOtherUserId} googleuser={this.state.googleuser} />} />
             <Route exact path="/myprofile" render={(props) => <Profile {...props} profile={this.state.googleuser} googleuser={this.state.googleuser} />} />
             <Route exact path="/myprofile/edit" render={(props) => <ProfileEdit {...props} updateProfile={this.loadProfile} googleuser={this.state.googleuser} />} />
-            <Route path="/users" render={(props) => <OtherUserProfile {...props} googleuser={this.state.googleuser} />} />
+            <Route path="/users/:otheruserid" render={(props) => <OtherUserProfile {...props} googleuser={this.state.googleuser} otheruserid={this.state.otheruserid}/>} />
 
             {/* <Route exact path="/myprofile/edit" component={ProfileEdit} />
             <Route exact path="/myprofile/edit" render={(props) => (<ProfileEdit {...props} data={googleuser= this.state.googleuser})}

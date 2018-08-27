@@ -25,9 +25,11 @@ class OtherUserProfile extends Component {
    
   //this.setState({googleuser: this.props.googleuser})
   //console.log(googleuser)
-
+  const id = this.props.otheruserid
+  console.log(id);
+  //const id = this.props.otheruserid
   this.loadListings();
-  this.loadOtherUser();
+  this.loadOtherUser(id);
   //this.loadProfile(this.state._id);
 }
 
@@ -39,8 +41,9 @@ class OtherUserProfile extends Component {
     .catch(err => console.log(err));
   };
 
-  loadOtherUser = (id) => {
-    API.getUser(id)
+  loadOtherUser = () => {
+    const otheruserid = this.props.match.params.otheruserid
+    API.getUser(otheruserid)
       .then(res =>
         this.setState({ otheruser: res.data })
       )
@@ -49,8 +52,8 @@ class OtherUserProfile extends Component {
 
 
  render (){
-  const googleuser = this.props.googleuser
-  //console.log(googleuser.)
+  const otheruser = this.state.otheruser
+  console.log(otheruser.username)
    return (
   <div>
     <Container fluid>
@@ -58,17 +61,17 @@ class OtherUserProfile extends Component {
       <Row>
         <Col size="md-3">
           <div>
-            <img className="rounded float-right" src={googleuser.image + 0} style={{ width: 150, height: 150 }} alt={googleuser.username}/>
+            <img className="rounded float-right" src={otheruser.image + 0} style={{ width: 150, height: 150 }} alt={otheruser.username}/>
           </div>
         </Col>
         <Col size="md-5">
           <Container fluid>
           <div>
-            <h3>{googleuser.username}</h3>
+            <h3>{otheruser.username}</h3>
 
-              <p><span><img src="/placeholder.png" style={{width: 20, height: 20}}/> {googleuser.location}</span></p>
-              <p><strong>Instruments: </strong>{googleuser.instruments}</p>
-              <p><strong>Genres: </strong>{googleuser.genres}</p>
+              <p><span><img src="/placeholder.png" style={{width: 20, height: 20}}/> {otheruser.location}</span></p>
+              <p><strong>Instruments: </strong>{otheruser.instruments}</p>
+              <p><strong>Genres: </strong>{otheruser.genres}</p>
           </div>
           </Container>
         </Col>
@@ -82,7 +85,7 @@ class OtherUserProfile extends Component {
         <div className="shadow rounded top">
           <h5>ABOUT ME</h5>
           <hr></hr>
-          <p>{googleuser.bio}</p>
+          <p>{otheruser.bio}</p>
         </div>
         </Container>
 
@@ -91,7 +94,7 @@ class OtherUserProfile extends Component {
           <h5>MY POSTINGS</h5>
           <hr></hr>
           <div className="media">
-            <img className="mr-3" src={googleuser.image + 0} style={{ width: 64, height: 64 }} alt={googleuser.username}/>
+            <img className="mr-3" src={otheruser.image + 0} style={{ width: 64, height: 64 }} alt={otheruser.username}/>
               <div className="media-body">
                 <h5 className="mt-0">French horn needed</h5>
                   Looking for french horn to play at upcoming recital at the University of Minnesota.
@@ -106,8 +109,8 @@ class OtherUserProfile extends Component {
         <div className="shadow rounded top">
           <h6>Contact & Personal Info</h6>
           <hr></hr>
-          <p><span><img src="/email.png" style={{width: 20, height: 20}}/> {googleuser.email}</span></p>
-          <p><span><img src="/phone.png" style={{width: 20, height: 20}}/> {googleuser.phone}</span></p>
+          <p><span><img src="/email.png" style={{width: 20, height: 20}}/> {otheruser.email}</span></p>
+          <p><span><img src="/phone.png" style={{width: 20, height: 20}}/> {otheruser.phone}</span></p>
         </div>
         </Container>
       </Col>
