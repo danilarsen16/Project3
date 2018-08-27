@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 const listingsSchema = new Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
-  username: { type: String, required: true },
+  username: { type: String, required: true, unique: false },
   date: { type: Date, default: Date.now },
-  _id: { type: String, required: true}
+  user_id: { type: String, required: true, unique: false}
 });
 
 const listings = mongoose.model("listings", listingsSchema);
