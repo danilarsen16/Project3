@@ -18,7 +18,7 @@ module.exports = {
     },
     create: function (req, res) {
         db.listings
-            .create({ title: req.body.title, username: req.body.username, description: req.body.description, _id: req.body._id})
+            .create({ title: req.body.title, username: req.body.username, description: req.body.description, user_id: req.body._id})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
