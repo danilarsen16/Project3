@@ -29,6 +29,7 @@ module.exports = function (passport) {
 			const old_user = req.user;
 			req.logout();
 			res.json({ success: (req.user ? "No" : "Yes"), user: req.user, "old_user": old_user });
+			
 		}
 	);
 

@@ -12,7 +12,8 @@ class LiveFeed extends Component {
     listings: [],
     title: "",
     username: "",
-    description: ""
+    description: "",
+    otheruserid: ""
   };
 
   componentDidMount() {
@@ -47,6 +48,12 @@ class LiveFeed extends Component {
     });
   };
 
+  loadOtherUserId = event => {
+    const otheruserid = this.val();
+    this.setState({otheruserid: otheruserid});
+    console.log('pleasework',this.state.otheruserid)
+  }
+
   handleFormSubmit = event => {
     const googleuser = this.props.googleuser
     event.preventDefault();
@@ -70,6 +77,7 @@ class LiveFeed extends Component {
 
   render() {
     const googleuser = this.props.googleuser
+
     return (
       <Container fluid>
         <Jumbotron>
@@ -108,14 +116,15 @@ class LiveFeed extends Component {
               {this.state.listings.length ? (
                 <List>
                   {this.state.listings.map(listings => {
+                    const pleasework = "/users/" + listings.user_id
                     return (
-                    <ListItem key={listings._id}>
+                    <ListItem onClick={this.loadOtherUserId} value={listings.user_id} key={listings.user_id}>
                     <h2>
                     <img className="mr-3 rounded" src={googleuser.image + 0} style={{ width: 64, height: 64 }} alt={googleuser.username}/>
                       {listings.title} 
                       {/* <DeleteBtn onClick={() => this.deleteListings(listings._id)} /> */}
                       </h2>
-                      <strong>Posted By: {listings.username}</strong>
+                      <a href={pleasework}><strong>Posted By: {listings.username}</strong></a>
                       <p>{listings.description}</p>
                     </ListItem>
                     );
