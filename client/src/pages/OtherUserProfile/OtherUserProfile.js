@@ -3,6 +3,8 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import "./OtherUserProfile.css";
 import { Link } from "react-router-dom";
+import { List, ListItem } from "../../components/List";
+
 
 class OtherUserProfile extends Component {
  state = {
@@ -17,7 +19,8 @@ class OtherUserProfile extends Component {
   image: "https://images.unsplash.com/photo-1517430529647-90cda5b40093?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9c0c3c22799cb1acffee5bc833906df8&auto=format&fit=crop&w=700&q=60",
 
   listings: [],
-  otheruser: {}
+  otheruser: {},
+  isLoading:false,
   //googleuser: {}
  }
 
@@ -31,6 +34,27 @@ class OtherUserProfile extends Component {
   this.loadListings();
   this.loadOtherUser(id);
   //this.loadProfile(this.state._id);
+}
+
+getUserListings = () => {
+  const otheruser = this.state.otheruser
+  console.log(this.props)
+  const otheruserid = this.props.match.params.otheruserid
+  API.getUserListings(otheruserid)
+
+  .then(res => this.setState({ listings: res.data, isLoading: true}))
+    .catch(err => console.log(err));
+    };
+
+componentDidUpdate() {
+  if (this.state.isLoading === false && this.state.otheruser.hasOwnProperty("_id"))
+  this.getUserListings();
+  
+ //this.setState({googleuser: this.props.googleuser})
+ //console.log(googleuser)
+
+ // this.loadProfile();
+ //this.loadProfile(this.state._id);
 }
 
  loadListings = () => {
@@ -91,15 +115,28 @@ class OtherUserProfile extends Component {
 
         <Container fluid>
         <div className="shadow rounded">
-          <h5>MY POSTINGS</h5>
-          <hr></hr>
-          <div className="media">
-            <img className="mr-3" src={otheruser.image + 0} style={{ width: 64, height: 64 }} alt={otheruser.username}/>
-              <div className="media-body">
-                <h5 className="mt-0">French horn needed</h5>
-                  Looking for french horn to play at upcoming recital at the University of Minnesota.
+        <Row>
+          <div className="media-body shadow rounded">
+              {this.state.listings.length ? (
+                <List>
+                  {this.state.listings.map(listings => {
+                    return (
+                    <ListItem key={listings._id}>
+                    <h2>
+                    <img className="mr-3 rounded" src={otheruser.image + 0} style={{ width: 64, height: 64 }} alt={otheruser.username}/>
+                      {listings.title} 
+                      </h2>
+                      <strong>Posted By: {listings.username}</strong>
+                      <p>{listings.description}</p>
+                    </ListItem>
+                    );
+                  })}
+                </List>
+              ) : (
+                  <h3>No Posts to Display</h3>
+                )}
             </div>
-          </div>
+            </Row>
         </div>
         </Container>
       </Col>
