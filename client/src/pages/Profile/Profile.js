@@ -3,6 +3,8 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import "./Profile.css";
 import { Link } from "react-router-dom";
+import { List, ListItem } from "../../components/List";
+import DeleteBtn from "../../components/DeleteBtn";
 
 class Profile extends Component {
  state = {
@@ -20,7 +22,9 @@ class Profile extends Component {
 
   //googleuser: {}
  }
-
+ componentDidMount() {
+  this.loadListings();
+}
  componentDidUpdate() {
    
   //this.setState({googleuser: this.props.googleuser})
@@ -30,12 +34,17 @@ class Profile extends Component {
   //this.loadProfile(this.state._id);
 }
 
- loadListings = () => {
-  API.getListings()
-    .then(res =>
-      this.setState({ listings: res.data, title: "", username: "", description: "" })
-    )
-    .catch(err => console.log(err));
+  loadListings = () => {
+    API.getListings()
+
+      .then(res => this.setState({ listings: res.data }))
+      .catch(err => console.log(err));
+  };
+
+  deleteListings = id => {
+    API.deleteListings(id)
+      .then(res => this.loadListings())
+      .catch(err => console.log(err));
   };
  
   // loadProfile = () => {
@@ -90,15 +99,27 @@ class Profile extends Component {
 
         <Container fluid>
         <div className="shadow rounded">
-          <h5>MY POSTINGS</h5>
-          <hr></hr>
-          <div className="media">
-            <img className="mr-3" src={googleuser.image + 0} style={{ width: 64, height: 64 }} alt={googleuser.username}/>
-              <div className="media-body">
-                <h5 className="mt-0">French horn needed</h5>
-                  Looking for french horn to play at upcoming recital at the University of Minnesota.
-            </div>
-          </div>
+        <Row>
+              {this.state.listings.length ? (
+                <List>
+                  {this.state.listings.map(listings => {
+                    return (
+                    <ListItem key={listings._id}>
+                    <h2>
+                    <img className="mr-3 rounded" src={googleuser.image + 0} style={{ width: 64, height: 64 }} alt={googleuser.username}/>
+                      {listings.title} 
+                      <DeleteBtn onClick={() => this.deleteListings(listings._id)} />
+                      </h2>
+                      <strong>Posted By: {listings.username}</strong>
+                      <p>{listings.description}</p>
+                    </ListItem>
+                    );
+                  })}
+                </List>
+              ) : (
+                  <h3>No Posts to Display</h3>
+                )}
+            </Row>
         </div>
         </Container>
       </Col>
