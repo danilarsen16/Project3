@@ -27,6 +27,7 @@ function(req,res) {
     res.json(req.user[0])
 })
 
+
 // router.route("/info")
 //     .get(  (req,res) => res.json(req.user[0]) )
 //     .post( (req,res) => res.json(req.user[0]) )
