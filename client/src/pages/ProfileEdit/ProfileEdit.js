@@ -20,6 +20,8 @@ class ProfileEdit extends Component {
     _id: ""
   }
   componentDidMount() {
+    const googleuser = this.props.googleuser
+    this.setState({username: googleuser.username, location: googleuser.location, instruments: googleuser.instruments, genres: googleuser.genres, bio: googleuser.bio, email: googleuser.email, phone: googleuser.phone})
     //   //this.setState({_id: req.user[0]._id})
     //   const googleuser = this.props.googleuser
     //   //this.setState({_id: googleuser._id})
@@ -75,7 +77,11 @@ class ProfileEdit extends Component {
       phone: phone,
       email: email
     })
-      .then(res => console.log(res))
+      .then(res => {
+        this.props.updateProfile()
+        this.props.history.push("/myprofile")
+      })
+
       .catch(err => console.log(err))
   }
 
