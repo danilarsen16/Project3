@@ -27,12 +27,12 @@ var UserSchema = new Schema({
     default: "new@new.com"
   },
   genres: {
-    type: Array,
-    default: ["elevator"]
+    type: String,
+    default: "elevator"
   },
   instruments: {
-    type: Array,
-    default: ["sackbut"]
+    type: String,
+    default: "sackbut"
   },
   location: {
     type: String,
@@ -43,8 +43,8 @@ var UserSchema = new Schema({
     default: "Kenny G is my homeboy."
   },
   links: {
-    type: Array,
-    default: ["wickerpedia.org"]
+    type: String,
+    default: "wickerpedia.org"
   },
   phone: {
     type: String,
