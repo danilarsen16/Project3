@@ -43,5 +43,9 @@ export default {
       data: content
     })
   },
+  getUserListings: function (id) {
+    return axios.get(`/api/listings?user_id=` + id)
+
+  },
 
 }
