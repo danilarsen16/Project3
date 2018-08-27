@@ -100,6 +100,7 @@ class Profile extends Component {
         <Container fluid>
         <div className="shadow rounded">
         <Row>
+          <div className="media-body shadow rounded">
               {this.state.listings.length ? (
                 <List>
                   {this.state.listings.map(listings => {
@@ -119,6 +120,7 @@ class Profile extends Component {
               ) : (
                   <h3>No Posts to Display</h3>
                 )}
+            </div>
             </Row>
         </div>
         </Container>
