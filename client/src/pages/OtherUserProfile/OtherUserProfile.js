@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
-import "./Profile.css";
+import "./OtherUserProfile.css";
 import { Link } from "react-router-dom";
 
-class Profile extends Component {
+class OtherUserProfile extends Component {
  state = {
   username: "Alicia Keys",
   location: "New York, NY",
@@ -52,9 +52,6 @@ class Profile extends Component {
    return (
   <div>
     <Container fluid>
-    <button style={{ float: "right", marginBottom: 10 }} className="btn btn-primary editBtn">
-    <Link className="editBtn" to="/myprofile/edit">Edit Profile</Link>
-    </button>
     <div class="bio">
       <Row>
         <Col size="md-3">
@@ -119,4 +116,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default OtherUserProfile;

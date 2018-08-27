@@ -12,12 +12,6 @@
     color: rgb(51, 53, 53);
 }
 
-.editBtn {
+.btn {
     color: white;
 }
-
-.editBtn:hover {
-    color: white;
-    text-decoration: none;
-}
-
