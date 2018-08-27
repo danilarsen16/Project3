@@ -13,3 +13,12 @@ The **Home Page** shows you posts from other members, and allows you to add a po
 The **My Profile** page allows you to customize your profile, and see the posts you have created.
 
 ![Profile Page](/screenshots/ProfilePage.png)
+
+## How we created it:
+**TunedUp** is a MERN Full Stack App, created with MongoDB, ExpressJS, ReactJS, and NodeJS.
+
+We used Balsamiq for the wireframing.
+
+NPM's used: react-router-dom, reactstrap, react-image-resizer.
+
+**TunedUp** was created by: Sonia Funkenbusch, Marissa Ellingson, Kathleen Vincent, Dani Larsen, Alison Fahy.
