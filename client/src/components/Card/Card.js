@@ -1,13 +1,9 @@
 import React from "react";
-import { Card } from 'reactstrap'
+import "./Card.css";
 
-Card.propTypes = {
-  // Pass in a Component to override default element
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  inverse: PropTypes.bool,
-  color: PropTypes.string,
-  body: PropTypes.bool,
-  className: PropTypes.string
-};
-
+const Card = ({ children }) => (
+<div>
+    {children}
+  </div>
+);
 export default Card;
