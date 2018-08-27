@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LiveFeed from "./pages/LiveFeed";
 import Profile from "./pages/Profile";
+import OtherUserProfile from "./pages/OtherUserProfile";
 import ProfileEdit from "./pages/ProfileEdit";
 import Nav from "./components/Nav";
 import API from "./utils/API";
@@ -35,6 +36,7 @@ class App extends Component {
             <Route exact path="/livefeed" render={(props) => <LiveFeed {...props} googleuser={this.state.googleuser} />} />
             <Route exact path="/myprofile" render={(props) => <Profile {...props} googleuser={this.state.googleuser} />} />
             <Route exact path="/myprofile/edit" render={(props) => <ProfileEdit {...props} googleuser={this.state.googleuser} />} />
+            <Route path="/users" render={(props) => <OtherUserProfile {...props} googleuser={this.state.googleuser} />} />
 
             {/* <Route exact path="/myprofile/edit" component={ProfileEdit} />
             <Route exact path="/myprofile/edit" render={(props) => (<ProfileEdit {...props} data={googleuser= this.state.googleuser})}
