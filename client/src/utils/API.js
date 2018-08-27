@@ -3,6 +3,9 @@ import axios from "axios";
 export default {
 
 
+  toGoogle: function () {
+    return axios.get('/')
+  },
 
   getGoogleUser: function () {
     return axios.get("/info");

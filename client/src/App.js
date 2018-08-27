@@ -37,8 +37,14 @@ class App extends Component {
     //   )
     //   .catch(err => console.log(err));
     //this.setState({_id: req.user[0]._id})
-    this.loadProfile()
+    this.toGoogle()
   }
+
+  toGoogle = () => {
+    API.toGoogle()
+      .then(res => this.loadProfile())
+      .catch(err => console.log(err));
+  };
 
   loadProfile = () => {
     API.getGoogleUser()
