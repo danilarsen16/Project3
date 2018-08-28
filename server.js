@@ -26,11 +26,11 @@ app.get('/forbidden', (req,res) => {
 
 // Setup Routes
 const protectedRoutes   = require('./routes/protected-routes');
-//const apiRoutes         = require('./routes/api')(passport);
+const apiRoutes         = require('./routes/api')(passport);
 //const pubRoutes         = require('./routes/public-routes')(passport);
 
 //app.use(pubRoutes);
-//app.use(apiRoutes);
+app.use(apiRoutes);
 //make sure protectedRoutes is app.use'd after the public routes.
 app.use(protectedRoutes);
 
