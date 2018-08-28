@@ -6,6 +6,8 @@ import OtherUserProfile from "./pages/OtherUserProfile";
 import ProfileEdit from "./pages/ProfileEdit";
 import Nav from "./components/Nav";
 import API from "./utils/API";
+import Developers from "./pages/Developers";
+
 
 class App extends Component {
   state = {
@@ -67,6 +69,8 @@ class App extends Component {
             <Route exact path="/livefeed" render={(props) => <LiveFeed {...props} loadOtherUserId={this.loadOtherUserId} googleuser={this.state.googleuser} />} />
             <Route exact path="/myprofile" render={(props) => <Profile {...props} profile={this.state.googleuser} googleuser={this.state.googleuser} />} />
             <Route exact path="/myprofile/edit" render={(props) => <ProfileEdit {...props} updateProfile={this.loadProfile} googleuser={this.state.googleuser} />} />
+            <Route path="/users" render={(props) => <OtherUserProfile {...props} googleuser={this.state.googleuser} />} />
+            <Route exact path="/Developers" render={(props) => <Developers {...props} googleuser={this.state.googleuser} />} />
             <Route path="/users/:otheruserid" render={(props) => <OtherUserProfile {...props} googleuser={this.state.googleuser} otheruserid={this.state.otheruserid}/>} />
 
             {/* <Route exact path="/myprofile/edit" component={ProfileEdit} />

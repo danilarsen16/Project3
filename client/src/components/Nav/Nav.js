@@ -16,6 +16,9 @@ const Nav = () => (
       <a className="nav-link" href="/myprofile">My Profile</a>
     </li>
     <li className="nav-item">
+      <a className="nav-link" href="/Developers">Meet the Developers</a>
+    </li>
+    <li className="nav-item">
       <a className="nav-link" href="http://localhost:3001/logout">LogOut</a>
     </li>
   </ul>
