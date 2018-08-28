@@ -13,7 +13,7 @@ function (req, res) {
 
     console.log(req.user)
     console.log("User logged in: ", req.user[0]._id);
-    res.redirect('http://'+ req.host + ':3000/')
+    res.redirect('https://tunedup.herokuapp.com/')
 
     //res.sendFile(path.join(__dirname, "../"));
     //console.log("User Logged In. User:", req.user,"query:", req.query)
