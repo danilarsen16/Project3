@@ -37,7 +37,7 @@ class App extends Component {
     //   )
     //   .catch(err => console.log(err));
     //this.setState({_id: req.user[0]._id})
-    this.toGoogle()
+    this.loadProfile()
   }
 
   toGoogle = () => {

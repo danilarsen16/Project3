@@ -8,13 +8,14 @@ let User = require('../models/users');
 
 
 console.log("Google app Client ID: ", process.env.CLIENT_ID); //test that we got our env setup right
-const cbUrl = (process.env.NODE_ENV === "production" ? '/login/google/cb' : 'http://localhost:3001/login/google/cb')
+const cbUrl = (process.env.NODE_ENV === "production" ? 'http://tunedup.herokuapp.com/login/google/cb' : 'http://localhost:3001/login/google/cb')
 
 const strategy = new Strategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
   callbackURL: cbUrl
 },
+
   function (accessToken, refreshToken, profile, cb) {
     // In this example, the user's Github profile is supplied as the user
     // record.  In a production-quality application, the Github profile should
